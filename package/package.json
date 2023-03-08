@@ -12,6 +12,6 @@
     "jalali-moment": "^3.3.11"
   },
   "devDependencies": {
-    "jshit": "0.0.1"
+    "jshint": "^2.13.6"
   }
 }

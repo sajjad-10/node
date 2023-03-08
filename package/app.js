@@ -7,3 +7,6 @@ const moment = require("jalali-moment");
 const outPut = moment(new Date()).locale('fa').format('YYYY/MM/DD');
 
 console.log(outPut); // node app.js
+
+// test js hent
+console.log("test js hent") // jshint app.js
