@@ -3,11 +3,20 @@ const app = express();
 
 app.get("/", (req, res) => {
     res.send("Hello express");
-}); // Every time requested to this rout ( / ) run function
+}); // Every time requested to this rout ( / ) run function -- localhost:3000/
+
+app.get("/api/user", (req, res) => {
+    res.send([
+        { id: 1, name: "user1" },
+        { id: 2, name: "user2" },
+    ]);
+}); // -- localhost:3000/api/user
 
 app.listen(3000, () => console.log("Listening on port 3000")); // create web server
 
 /*
  * run web server : node app
- * in browser : node app
+ * in browser : 
+ * * localhost:3000/
+ * * localhost:3000/api/user
  */
