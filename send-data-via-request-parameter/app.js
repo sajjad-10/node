@@ -6,11 +6,12 @@ app.get("/", (req, res) => {
 }); // Every time requested to this rout ( / ) run function -- localhost:3000/
 
 app.get("/api/users", (req, res) => {
+    console.log(req.query);
     res.send([
         { id: 1, name: "user1" },
         { id: 2, name: "user2" },
     ]);
-}); // -- localhost:3000/api/users
+}); // -- localhost:3000/api/users -- for query string : localhost:3000/api/users?status=online&sort=date
 
 app.get("/api/users/:id", (req, res) => {
     // console.log(req.params);
