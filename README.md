@@ -19,7 +19,7 @@ This is for learning
 
 ## Intro to express :
 
-| Name                              | git Link                                                        | Usage           |
-| --------------------------------- | --------------------------------------------------------------- | --------------- |
-| Intro                             | [Link](https://github.com/sajjad-10/node/tree/main/express-app) | listen(), get() |
-| Send data via Request - parameter | [Link]()                                                        | use URL         |
+| Name                           | git Link                                                                            | Usage           |
+| ------------------------------ | ----------------------------------------------------------------------------------- | --------------- |
+| Intro                          | [Link](https://github.com/sajjad-10/node/tree/main/express-app)                     | listen(), get() |
+| Send data via Request - params | [Link](https://github.com/sajjad-10/node/tree/main/send-data-via-request-parameter) | use URL         |
