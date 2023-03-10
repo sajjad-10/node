@@ -12,11 +12,12 @@ app.get("/api/user", (req, res) => {
     ]);
 }); // -- localhost:3000/api/user
 
-app.listen(3000, () => console.log("Listening on port 3000")); // create web server
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Listening on port ${port}`)); // create web server
 
 /*
  * run web server : node app
- * in browser : 
+ * in browser :
  * * localhost:3000/
  * * localhost:3000/api/user
  */
