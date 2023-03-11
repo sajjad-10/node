@@ -15,12 +15,14 @@ app.get("/api/users/:id", (req, res) => {
     const user = users.find((u) => {
         return u.id === parseInt(req.params.id);
     });
-    console.log(user);
     if (!user) {
-        return res.json({
-            data: null,
-            massage: "The user with th given id was not found.",
-        });
+        return (
+            res.status(404), // set status code -- can see dev tools network.
+            res.json({
+                data: null,
+                massage: "The user with th given id was not found.",
+            })
+        );
     } // if not find user
     res.json({
         data: user,
