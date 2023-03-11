@@ -1,4 +1,5 @@
 const express = require("express");
+const { body, validationResult } = require("express-validator");
 const app = express();
 let users = require("./users");
 
@@ -33,15 +34,31 @@ app.get("/api/users/:id", (req, res) => {
 }); // localhost:3000/api/users/12
 
 /* * send data -- post methods */
-app.post("/api/users/:id", (req, res) => {
-    console.log(req.body);
-    res.send("Developing ...");
-    users.push({ id: users.length + 1, ...req.body });
-    res.jsonp({
-        data: users,
-        message: "data send ( OK )",
-    });
-}); // localhost:3000/api/users/12
+app.post(
+    "/api/users",
+    [
+        body("email", "email must be valid").isEmail(),
+        body("first_name", "first_name can't be empty").notEmpty(),
+        body("last_name", "last_name can't be empty").notEmpty(),
+    ],
+    (req, res) => {
+        const errors = validationResult(req);
+        console.log(errors.isEmpty(), "errors.isEmpty()");
+        if (!errors.isEmpty()) {
+            return res.status(400).json({
+                data: null,
+                errors: errors.array(),
+                message: "validation error",
+            });
+        }
+        res.send("Developing ...");
+        users.push({ id: users.length + 1, ...req.body });
+        res.json({
+            data: users,
+            message: "data send ( OK )",
+        });
+    }
+); // localhost:3000/api/users/12
 /*
 * data to send :
 *    {
