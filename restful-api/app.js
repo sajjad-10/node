@@ -96,6 +96,26 @@ app.put(
         });
     }
 ); // localhost:3000/api/users
+
+/* * delete data -- delete methods */
+app.delete("/api/users/:id", (req, res) => {
+    const user = users.find((user) => user.id == req.params.id);
+
+    if (!user) {
+        return res.status(404).json({
+            data: null,
+            message: "the user with the give id was not found",
+        });
+    }
+
+    const index = users.indexOf(user);
+    users.splice(index, 1);
+    res.json({
+        data: users,
+        message: "data send ( OK )",
+    });
+});
+
 /*
 * data to send :
 *    {
