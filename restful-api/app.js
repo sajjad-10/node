@@ -58,7 +58,44 @@ app.post(
             message: "data send ( OK )",
         });
     }
-); // localhost:3000/api/users/12
+); // localhost:3000/api/users
+
+/* * update data -- post methods */
+app.put(
+    "/api/users/:id",
+    [
+        body("email", "email must be valid").isEmail(),
+        body("first_name", "first_name can't be empty").notEmpty(),
+        body("last_name", "last_name can't be empty").notEmpty(),
+    ],
+    (req, res) => {
+        const user = users.find((user) => user.id == req.params.id);
+        if (!user) {
+            return res.status(404).json({
+                data: null,
+                message: "the user with the give id was not found",
+            });
+        }
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({
+                data: null,
+                errors: errors.array(),
+                message: "validation error",
+            });
+        }
+        users = users.map((user) => {
+            if (user.id == req.params.id) {
+                return { ...user, ...req.body };
+            }
+            return user;
+        });
+        res.json({
+            data: users,
+            message: "data send ( OK )",
+        });
+    }
+); // localhost:3000/api/users
 /*
 * data to send :
 *    {
