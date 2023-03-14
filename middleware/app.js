@@ -3,7 +3,22 @@ const { body, validationResult } = require("express-validator");
 const app = express();
 let users = require("./users");
 
-app.use(express.json()); // express be default can not pares body
+app.use(express.json()); // express be default can not pares body -- Middleware-1
+
+app.use((req, res, next) => {
+    req.body.username = "Sajjad"; // in Middleware can change req & res object
+    req.user = { id: 1, name: "sajjad" };
+    res.send("this response is coming from Middleware-1");
+    console.log("custom Middleware-1");
+    next()
+});
+
+app.use((req, res, next) => {
+    console.log("custom Middleware-2");
+    console.log(req.body);
+    console.log(req.user);
+});
+
 
 /* * get all users */
 app.get("/api/users", (req, res) => {
@@ -13,7 +28,7 @@ app.get("/api/users", (req, res) => {
     });
 }); // localhost:3000/api/users
 
-/* * get one user -- params */
+/* * get one user -- params -- Middleware-2 */
 app.get("/api/users/:id", (req, res) => {
     const user = users.find((u) => {
         return u.id === parseInt(req.params.id);
@@ -33,7 +48,7 @@ app.get("/api/users/:id", (req, res) => {
     });
 }); // localhost:3000/api/users/12
 
-/* * send data -- post methods */
+/* * send data -- post methods -- Middleware-3 */
 app.post(
     "/api/users",
     [
@@ -60,7 +75,7 @@ app.post(
     }
 ); // localhost:3000/api/users
 
-/* * update data -- post methods */
+/* * update data -- post methods -- Middleware-4 */
 app.put(
     "/api/users/:id",
     [
@@ -97,7 +112,7 @@ app.put(
     }
 ); // localhost:3000/api/users
 
-/* * delete data -- delete methods */
+/* * delete data -- delete methods -- Middleware-5 */
 app.delete("/api/users/:id", (req, res) => {
     const user = users.find((user) => user.id == req.params.id);
 
