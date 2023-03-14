@@ -4,21 +4,7 @@ const app = express();
 let users = require("./users");
 
 app.use(express.json()); // express be default can not pares body -- Middleware-1
-
-app.use((req, res, next) => {
-    req.body.username = "Sajjad"; // in Middleware can change req & res object
-    req.user = { id: 1, name: "sajjad" };
-    res.send("this response is coming from Middleware-1");
-    console.log("custom Middleware-1");
-    next()
-});
-
-app.use((req, res, next) => {
-    console.log("custom Middleware-2");
-    console.log(req.body);
-    console.log(req.user);
-});
-
+app.use(express.urlencoded({ extended: true }));
 
 /* * get all users */
 app.get("/api/users", (req, res) => {
@@ -57,6 +43,7 @@ app.post(
         body("last_name", "last_name can't be empty").notEmpty(),
     ],
     (req, res) => {
+        return console.log(req.body);
         const errors = validationResult(req);
         console.log(errors.isEmpty(), "errors.isEmpty()");
         if (!errors.isEmpty()) {
