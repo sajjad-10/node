@@ -7,6 +7,15 @@ app.use(express.json()); // express be default can not pares body -- Middleware-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public")); // localhost:3000/image.jpeg
 
+console.log("NoDE_ENV: ", process.env.NODE_ENV);
+console.log("get(env): ", app.get("env"));
+// for change -> set NODE_ENV=production
+
+if (app.get("env") === "develop") {
+    console.log("morgan is active");
+    app.use(morgan("tiny"));
+} // display some Middleware just in develop
+
 /* * get all users */
 app.get("/api/users", (req, res) => {
     res.json({
