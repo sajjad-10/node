@@ -27,3 +27,4 @@ This is for learning
 | Restful api                          | [Link](https://github.com/sajjad-10/node/tree/main/restful-api)                          |                 |
 | Middleware                           | [Link](https://github.com/sajjad-10/node/tree/main/middleware)                           |                 |
 | Middleware - urlencode               | [Link](https://github.com/sajjad-10/node/tree/main/middleware-urlencode)                 |                 |
+| Middleware - static                  | [Link](https://github.com/sajjad-10/node/tree/main/middleware-static)                    |                 |
