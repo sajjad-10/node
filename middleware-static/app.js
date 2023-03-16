@@ -5,6 +5,7 @@ let users = require("./users");
 
 app.use(express.json()); // express be default can not pares body -- Middleware-1
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public")); // localhost:3000/image.jpeg
 
 /* * get all users */
 app.get("/api/users", (req, res) => {
