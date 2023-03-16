@@ -28,3 +28,4 @@ This is for learning
 | Middleware                           | [Link](https://github.com/sajjad-10/node/tree/main/middleware)                           |                 |
 | Middleware - urlencode               | [Link](https://github.com/sajjad-10/node/tree/main/middleware-urlencode)                 |                 |
 | Middleware - static                  | [Link](https://github.com/sajjad-10/node/tree/main/middleware-static)                    |                 |
+| Configurations                       | [Link](https://github.com/sajjad-10/node/tree/main/configurations)                       |                 |
