@@ -10,6 +10,7 @@ app.use(express.static("public")); // localhost:3000/image.jpeg
 
 console.log("Application Name", config.get("name")); // find key on config file
 console.log("Application version", config.get("version")); 
+console.log("SMS key version", config.get("SMS.key")); // get custom-environment-variables
 
 /* * get all users */
 app.get("/api/users", (req, res) => {
