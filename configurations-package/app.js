@@ -3,14 +3,17 @@ const { body, validationResult } = require("express-validator");
 const app = express();
 let users = require("./users");
 const config = require("config");
-
+const debug = require("debug")("app:main");
+const dbdebug = require("debug")("app:db");
 app.use(express.json()); // express be default can not pares body -- Middleware-1
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public")); // localhost:3000/image.jpeg
 
-console.log("Application Name", config.get("name")); // find key on config file
-console.log("Application version", config.get("version")); 
-console.log("SMS key version", config.get("SMS.key")); // get custom-environment-variables
+if (app.get("env") === "development") {
+    debug("debug is active"); // like console.log
+}
+console.log(app.get("env"));
+dbdebug("debug connected to db");
 
 /* * get all users */
 app.get("/api/users", (req, res) => {
@@ -49,7 +52,6 @@ app.post(
         body("last_name", "last_name can't be empty").notEmpty(),
     ],
     (req, res) => {
-        return console.log(req.body);
         const errors = validationResult(req);
         console.log(errors.isEmpty(), "errors.isEmpty()");
         if (!errors.isEmpty()) {
