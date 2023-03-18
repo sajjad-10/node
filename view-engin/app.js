@@ -9,11 +9,14 @@ app.use(express.json()); // express be default can not pares body -- Middleware-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public")); // localhost:3000/image.jpeg
 
-if (app.get("env") === "development") {
-    debug("debug is active"); // like console.log
-}
-console.log(app.get("env"));
-dbdebug("debug connected to db");
+// Ejs
+app.set("view engine", "ejs"); // Introducing View Engin
+app.set("views", "./view"); // Introducing files View - By default this is the same = views
+
+/* * Home page */
+app.get("/", (req, res) => {
+    res.render("home", { name:'sajjad'});
+}); // localhost:3000/
 
 /* * get all users */
 app.get("/api/users", (req, res) => {
